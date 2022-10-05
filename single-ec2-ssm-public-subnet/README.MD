@@ -1,6 +1,4 @@
-# AWS Load Balanced Website
-
-This project aims to deploy a sample website in a load-balanced, highly available, and resilient manner utilizing automation and AWS best practices.
+# An AWS VPC with a single EC2 instance with SSM console access
 
 **Built with**
 
@@ -17,22 +15,15 @@ Terraform manages the deployment.
 **AWS resources created**
 
 * 1 x VPC
-* 2 x Private subnets
-* 2 x Public subnets
-* 2 x NAT Gateways
+* 1 x public subnets
+* 1 x Route table
 * 1 x Internet Gateway
-* 1 x ALB
-* 1 x ASG
-* 1 x Launch Configuration
-* 4 x EC2
-* 2 x Security Groups
-* 2 x CloudWatch Alarms
+* 1 x EC2
+* 1 x SSM Agent installed
+* 1 x Security Groups
+
 
 **Getting started**
-
-Clone the repository locally in your system:
-
-`git clone https://github.com/cloudacia/aws-terraform.git`
 
 Deploy the code in your AWS account with Terraform
 
@@ -50,26 +41,21 @@ Deploy the code in your AWS account with Terraform
 **Folder structure options and naming conventions for software projects**
 ```
 .
-|-- main.tf               # AWS provider's configuration
-|-- networking.tf         # VPC, subnet, routing tables, etc.
-|-- autoscaling.tf        # AutoScaling and Launch configuration
-|-- loadbalancer.tf       # Load balancer and target group
-|-- security.tf           # Security groups
-|-- ssh_keys.tf           # EC2 key
-|-- launch_config.tf      # Launch Configuration
-|-- monitoring.tf         # CloudWatch Alarms
-|-- variables.tf          # Variables
-|-- output.tf             # Output values
-|-- bootstrap_scripts     # EC2 initialization scripts
-|-- ssh_keys              # SSH public key
-|-- diagram.png           # AWS network layout
+|-- main.tf                   # AWS provider's configuration
+|-- vpc.tf                    # VPC, subnet and routing tables
+|-- ec2.tf                    # Computing resources
+|-- iam.tf                    # instance profiles, roles, IAM policies
+|-- security.tf               # Security groups
+|-- variables.tf              # Variables
+|-- scripts                   # EC2 initialization scripts
+|-- diagram.jpeg           # AWS network layout
 |-- LICENSE.txt
 |-- README.md
 ```
 
 **Architecture**
 
-![Screenshot](single-ec2-ssm-public-subnet.jpeg)
+![Screenshot](diagram.jpeg)
 
 **Contributing**
 
