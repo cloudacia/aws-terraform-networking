@@ -1,8 +1,14 @@
+#################################################
+# IAM PROFILE                                  #
+#################################################
 resource "aws_iam_instance_profile" "ec2-ssm-profile" {
   name = "ec2_profile"
   role = aws_iam_role.dev-resources-iam-role.name
 }
 
+#################################################
+# IAM ROLE                                      #
+#################################################
 resource "aws_iam_role" "dev-resources-iam-role" {
   name               = "dev-ssm-role"
   description        = "The role for the developer resources EC2"
@@ -18,6 +24,9 @@ resource "aws_iam_role" "dev-resources-iam-role" {
 EOF
 }
 
+#################################################
+# IAM ROLE POLICY ATTACHMENT                    #
+#################################################
 resource "aws_iam_role_policy_attachment" "dev-resources-ssm-policy" {
   role       = aws_iam_role.dev-resources-iam-role.name
   policy_arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
