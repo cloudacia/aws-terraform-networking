@@ -26,11 +26,29 @@ variable "subnet01" {
 }
 
 ###############################################
+#    VPC SUBNET #2                            #
+###############################################
+variable "subnet02" {
+  type        = string
+  default     = "10.0.2.0/24"
+  description = "A private network"
+}
+
+###############################################
 #    SUBNET AVAILABILITY ZONE                 #
 ###############################################
 variable "availability_zone01" {
   type        = string
   default     = "us-east-1a"
+  description = "US East (N. Virginia)"
+}
+
+###############################################
+#    SUBNET AVAILABILITY ZONE                 #
+###############################################
+variable "availability_zone02" {
+  type        = string
+  default     = "us-east-1b"
   description = "US East (N. Virginia)"
 }
 
@@ -50,6 +68,15 @@ variable "aws_ami" {
   type        = string
   default     = "ami-026b57f3c383c2eec"
   description = "Amazon Linux 2"
+}
+
+###############################################
+#    S3 VPC END-POINT FOR US-EAST REGION      #
+###############################################
+variable "s3_endpoint" {
+  type        = string
+  default     = "com.amazonaws.us-east-1.s3"
+  description = "S3 vpc endpoint for us-east-1 region"
 }
 
 ###############################################
