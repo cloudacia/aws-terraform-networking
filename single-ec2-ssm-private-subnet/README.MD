@@ -1,4 +1,4 @@
-# An AWS VPC with a single EC2 instance with SSM console access
+# An single EC2 instance in a private subnet with SSM console access
 
 **Built with**
 
