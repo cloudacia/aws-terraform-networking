@@ -11,6 +11,7 @@ resource "aws_instance" "web01" {
   subnet_id                   = aws_subnet.subnet01.id
   user_data                   = filebase64("scripts/bootstrap.sh")
   iam_instance_profile        = aws_iam_instance_profile.ec2-ssm-profile.name
+  vpc_security_group_ids      = [aws_security_group.web01.id]
   associate_public_ip_address = true
 
   metadata_options {
@@ -24,6 +25,6 @@ resource "aws_instance" "web01" {
   }
 
   tags = {
-    Name = "Development"
+    Name = "Web01"
   }
 }
