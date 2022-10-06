@@ -1,4 +1,4 @@
-# An AWS VPC with a single EC2 instance with SSM console access
+# # An single EC2 instance in a public subnet with SSM console access
 
 **Built with**
 
@@ -21,7 +21,8 @@ Terraform manages the deployment.
 * 1 x EC2
 * 1 x SSM Agent installed
 * 1 x Security Groups
-
+* 1 x IAM roles
+* 1 x IAM profiles
 
 **Getting started**
 
