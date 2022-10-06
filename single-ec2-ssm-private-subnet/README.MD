@@ -16,11 +16,16 @@ Terraform manages the deployment.
 
 * 1 x VPC
 * 1 x public subnets
-* 1 x Route table
+* 1 x private subnets
+* 2 x Route table
 * 1 x Internet Gateway
-* 1 x EC2
-* 1 x SSM Agent installed
-* 1 x Security Groups
+* 2 x EC2
+* 2 x SSM Agent installed
+* 3 x Security Groups
+* 4 x VPC endpoint
+* 1 x IAM roles
+* 1 x IAM profiles
+* 1 x SSH key
 
 
 **Getting started**
@@ -45,10 +50,11 @@ Deploy the code in your AWS account with Terraform
 |-- vpc.tf                    # VPC, subnet and routing tables
 |-- ec2.tf                    # Computing resources
 |-- iam.tf                    # instance profiles, roles, IAM policies
-|-- security.tf               # Security groups
+|-- security_groups.tf        # Security groups
+|-- ssh_keys.tf               # SSH keys
 |-- variables.tf              # Variables
 |-- scripts                   # EC2 initialization scripts
-|-- diagram.jpeg           # AWS network layout
+|-- diagram.jpeg              # AWS network layout
 |-- LICENSE.txt
 |-- README.md
 ```
