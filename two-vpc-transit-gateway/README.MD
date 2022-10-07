@@ -15,7 +15,8 @@ Terraform manages the deployment.
 **AWS resources created**
 
 * 2 x VPC
-* 1 x VPC Peering connection
+* 1 x VPC Transit Gateway
+* 2 x VPC attachments
 * 1 x public subnets
 * 2 x private subnets
 * 3 x Route table
