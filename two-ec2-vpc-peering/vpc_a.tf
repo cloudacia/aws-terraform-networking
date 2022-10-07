@@ -101,7 +101,7 @@ resource "aws_route" "internet_gateway" {
 ################################################
 resource "aws_route" "vpc_b_network" {
   route_table_id            = aws_route_table.vpc_a_rt01.id
-  destination_cidr_block    = "10.2.0.0/16"
+  destination_cidr_block    = var.vpc_cidr_b
   vpc_peering_connection_id = aws_vpc_peering_connection.peering_vpc_a_to_vpc_b.id
   depends_on                = [aws_route_table.vpc_a_rt01]
 }

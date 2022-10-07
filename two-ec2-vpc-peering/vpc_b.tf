@@ -39,7 +39,7 @@ resource "aws_route_table" "vpc_b_rt01" {
 ################################################
 resource "aws_route" "vpc_a_network" {
   route_table_id            = aws_route_table.vpc_b_rt01.id
-  destination_cidr_block    = "10.1.0.0/16"
+  destination_cidr_block    = var.vpc_cidr_a
   vpc_peering_connection_id = aws_vpc_peering_connection.peering_vpc_a_to_vpc_b.id
   depends_on                = [aws_route_table.vpc_b_rt01]
 }
