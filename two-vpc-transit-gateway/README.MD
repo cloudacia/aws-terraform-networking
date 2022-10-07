@@ -1,4 +1,4 @@
-# VPC Peering connection
+# Transit Gateway with two VPC
 
 **Built with**
 
