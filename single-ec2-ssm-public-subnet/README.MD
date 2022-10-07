@@ -1,4 +1,4 @@
-# # An single EC2 instance in a public subnet with SSM console access
+# A single EC2 instance in a public subnet with SSM console access
 
 **Built with**
 
