@@ -6,7 +6,7 @@ resource "aws_ec2_transit_gateway" "tg01" {
 }
 
 ################################################
-#  TRANSIT GATEWAY ATTACHMENT #1 OF VPC A      #
+#  TRANSIT GATEWAY ATTACHMENT #1               #
 ################################################
 resource "aws_ec2_transit_gateway_vpc_attachment" "tg01_attachment_01" {
   subnet_ids         = [aws_subnet.vpc_a_subnet01.id, aws_subnet.vpc_a_subnet02.id]
@@ -19,7 +19,7 @@ resource "aws_ec2_transit_gateway_vpc_attachment" "tg01_attachment_01" {
 }
 
 ################################################
-#  TRANSIT GATEWAY ATTACHMENT #1 OF VPC B      #
+#  TRANSIT GATEWAY ATTACHMENT #2               #
 ################################################
 resource "aws_ec2_transit_gateway_vpc_attachment" "tg01_attachment_02" {
   subnet_ids         = [aws_subnet.vpc_b_subnet01.id]
