@@ -1,4 +1,4 @@
-# Transit Gateway with Egress VPC
+# Transit Gateway with Egress and Ingress VPC
 
 **Built with**
 
@@ -14,22 +14,23 @@ Terraform manages the deployment.
 
 **AWS resources created**
 
-* 3 x VPC
+* 4 x VPC
 * 1 x VPC Transit Gateway
-* 3 x VPC attachments
-* 3 x public subnets
-* 4 x private subnets
-* 5 x Route table
-* 1 x Internet Gateway
+* 4 x VPC attachments
+* 4 x public subnets
+* 6 x private subnets
+* 6 x Route table
+* 2 x Internet Gateway
 * 2 NAT Gateway
-* 3 x EC2
+* 4 x EC2
 * 2 x SSM Agent installed
-* 4 x Security Groups
+* 6 x Security Groups
 * 8 x VPC endpoint
 * 1 x IAM roles
 * 1 x IAM profiles
 * 1 x SSH key
 * 2 x EIP
+* 1 x ALB
 
 **Getting started**
 
