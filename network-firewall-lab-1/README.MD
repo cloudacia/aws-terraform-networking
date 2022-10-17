@@ -1,4 +1,4 @@
-# An single EC2 instance in a private subnet with SSM console access
+# AWS Network Firewall Lab /#1
 
 **Built with**
 
@@ -15,18 +15,19 @@ Terraform manages the deployment.
 **AWS resources created**
 
 * 1 x VPC
-* 1 x public subnets
+* 1 x firewall subnets
 * 1 x private subnets
-* 2 x Route table
+* 3 x Route table
 * 1 x Internet Gateway
-* 2 x EC2
+* 1 x EC2
 * 2 x SSM Agent installed
 * 3 x Security Groups
 * 4 x VPC endpoint
 * 1 x IAM roles
 * 1 x IAM profiles
-* 1 x SSH key
-
+* 1 x Network Firewall
+* 1 x Network Firewall Policy
+* 1 x Network Firewall Rule Group
 
 **Getting started**
 
@@ -47,6 +48,7 @@ Deploy the code in your AWS account with Terraform
 ```
 .
 |-- main.tf                   # AWS provider's configuration
+|-- network-firewall.tf       # Network firewall configuration
 |-- vpc.tf                    # VPC, subnet and routing tables
 |-- ec2.tf                    # Computing resources
 |-- iam.tf                    # instance profiles, roles, IAM policies
@@ -58,6 +60,14 @@ Deploy the code in your AWS account with Terraform
 |-- LICENSE.txt
 |-- README.md
 ```
+
+**Testing AWS Firewall**
+
+All traffic from the VPC to the Internet is blocked, except HTTP traffic to the following domains: ["www.cloudacia.com", "www.google.com", "github.com"].
+
+For testing the Network Firewall rules use the following command from the EC2 instance:
+
+$ curl -Is http://www.cloudacia.com | head -n
 
 **Architecture**
 
