@@ -63,7 +63,7 @@ Deploy the code in your AWS account with Terraform
 
 **Testing AWS Firewall**
 
-All traffic from the VPC to the Internet is blocked, except HTTP traffic to the following domains: ["www.cloudacia.com", "www.google.com", "github.com"].
+All traffic from the VPC to the Internet is blocked, except HTTP traffic to the following domains: ["www.cloudacia.com", "www.google.com", "www.github.com"].
 
 For testing the Network Firewall rules use the following command from the EC2 instance:
 
