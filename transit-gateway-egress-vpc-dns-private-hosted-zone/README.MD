@@ -1,4 +1,4 @@
-# Transit Gateway with Egress VPC
+# Transit Gateway with Egress VPC and Route53 Private Hosted Zones
 
 **Built with**
 
@@ -21,7 +21,7 @@ Terraform manages the deployment.
 * 4 x private subnets
 * 5 x Route table
 * 1 x Internet Gateway
-* 2 NAT Gateway
+* 2 x NAT Gateway
 * 3 x EC2
 * 2 x SSM Agent installed
 * 4 x Security Groups
@@ -30,6 +30,10 @@ Terraform manages the deployment.
 * 1 x IAM profiles
 * 1 x SSH key
 * 2 x EIP
+* 3 x Private Hosted Zone
+* 1 X DNS Inbound resolver
+* 1 x DNS Outbound resolver
+* 3 x DNS rules
 
 **Getting started**
 
@@ -59,6 +63,7 @@ Deploy the code in your AWS account with Terraform
 |-- security_groups.tf        # Security groups
 |-- ssh_keys.tf               # SSH keys
 |-- variables.tf              # Variables
+|-- dns.tf                    # DNS zones, DNS resolvers, and rules
 |-- scripts                   # EC2 initialization scripts
 |-- diagram.jpeg              # AWS network layout
 |-- LICENSE.txt
