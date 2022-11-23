@@ -1,3 +1,6 @@
+#################################################
+# ROUTE53 PRIVATE HOSTED ZONE                   #
+#################################################
 resource "aws_route53_zone" "phz_vpc_a" {
   name = "vpc-a.cloudacia.local"
 
@@ -10,6 +13,9 @@ resource "aws_route53_zone" "phz_vpc_a" {
   }
 }
 
+#################################################
+# ROUTE53 PRIVATE HOSTED ZONE                   #
+#################################################
 resource "aws_route53_zone" "phz_vpc_b" {
   name = "vpc-b.cloudacia.local"
 
@@ -22,6 +28,9 @@ resource "aws_route53_zone" "phz_vpc_b" {
   }
 }
 
+#################################################
+# ROUTE53 PRIVATE HOSTED ZONE                   #
+#################################################
 resource "aws_route53_zone" "phz_vpc_egress" {
   name = "vpc-egress.cloudacia.local"
 
@@ -34,16 +43,26 @@ resource "aws_route53_zone" "phz_vpc_egress" {
   }
 }
 
+#################################################
+# ROUTE53 PRIVATE HOSTED ZONE ASSOCIATION       #
+#################################################
 resource "aws_route53_zone_association" "phz_as_vpc_a" {
   zone_id = aws_route53_zone.phz_vpc_a.id
   vpc_id  = aws_vpc.vpc_egress.id
 }
 
+#################################################
+# ROUTE53 PRIVATE HOSTED ZONE ASSOCIATION       #
+#################################################
 resource "aws_route53_zone_association" "phz_as_vpc_b" {
   zone_id = aws_route53_zone.phz_vpc_b.id
   vpc_id  = aws_vpc.vpc_egress.id
 }
 
+
+#################################################
+# ROUTE53 DNS RECORD                            #
+#################################################
 resource "aws_route53_record" "web1_dns_record" {
   zone_id = aws_route53_zone.phz_vpc_a.id
   name    = "web1.vpc-a.cloudacia.local"
@@ -52,6 +71,9 @@ resource "aws_route53_record" "web1_dns_record" {
   records = [aws_instance.web01.private_ip]
 }
 
+#################################################
+# ROUTE53 DNS RECORD                            #
+#################################################
 resource "aws_route53_record" "web2_dns_record" {
   zone_id = aws_route53_zone.phz_vpc_b.id
   name    = "web2.vpc-b.cloudacia.local"
@@ -60,6 +82,9 @@ resource "aws_route53_record" "web2_dns_record" {
   records = [aws_instance.web02.private_ip]
 }
 
+#################################################
+# ROUTE53 DNS RECORD                            #
+#################################################
 resource "aws_route53_record" "web3_dns_record" {
   zone_id = aws_route53_zone.phz_vpc_egress.id
   name    = "web3.vpc-egress.cloudacia.local"
@@ -68,6 +93,9 @@ resource "aws_route53_record" "web3_dns_record" {
   records = [aws_instance.web03.private_ip]
 }
 
+#################################################
+# ROUTE53 INBOUND RESOLVER                      #
+#################################################
 resource "aws_route53_resolver_endpoint" "vpc_egress_inbound" {
   name      = "inbound resolver"
   direction = "INBOUND"
@@ -92,6 +120,9 @@ resource "aws_route53_resolver_endpoint" "vpc_egress_inbound" {
 }
 
 
+#################################################
+# ROUTE53 OUTBOUND RESOLVER                      #
+#################################################
 resource "aws_route53_resolver_endpoint" "vpc_egress_outbound" {
   name      = "outbound resolver"
   direction = "OUTBOUND"
@@ -115,6 +146,9 @@ resource "aws_route53_resolver_endpoint" "vpc_egress_outbound" {
   }
 }
 
+#################################################
+# ROUTE53 RESOLVER RULE                         #
+#################################################
 resource "aws_route53_resolver_rule" "vpc_egress_rule_1" {
   name                 = "vpc-a"
   domain_name          = "vpc-a.cloudacia.local"
@@ -130,6 +164,9 @@ resource "aws_route53_resolver_rule" "vpc_egress_rule_1" {
   }
 }
 
+#################################################
+# ROUTE53 RESOLVER RULE                         #
+#################################################
 resource "aws_route53_resolver_rule" "vpc_egress_rule_2" {
   domain_name          = "vpc-b.cloudacia.local"
   name                 = "vpc-b"
@@ -145,12 +182,53 @@ resource "aws_route53_resolver_rule" "vpc_egress_rule_2" {
   }
 }
 
+#################################################
+# ROUTE53 RESOLVER RULE                         #
+#################################################
+resource "aws_route53_resolver_rule" "vpc_egress_rule_3" {
+  domain_name          = "vpc-egress.cloudacia.local"
+  name                 = "vpc-egress"
+  rule_type            = "FORWARD"
+  resolver_endpoint_id = aws_route53_resolver_endpoint.vpc_egress_outbound.id
+
+  target_ip {
+    ip = "10.3.1.254"
+  }
+
+  tags = {
+    Environment = "cloudacia"
+  }
+}
+
+
+#################################################
+# ROUTE53 RESOLVER RULE ASSOCIATION             #
+#################################################
 resource "aws_route53_resolver_rule_association" "vpc_egress_rule_1_as_1" {
   resolver_rule_id = aws_route53_resolver_rule.vpc_egress_rule_1.id
   vpc_id           = aws_vpc.vpc_b.id
 }
 
+#################################################
+# ROUTE53 RESOLVER RULE ASSOCIATION             #
+#################################################
 resource "aws_route53_resolver_rule_association" "vpc_egress_rule_1_as_2" {
   resolver_rule_id = aws_route53_resolver_rule.vpc_egress_rule_2.id
   vpc_id           = aws_vpc.vpc_a.id
+}
+
+#################################################
+# ROUTE53 RESOLVER RULE ASSOCIATION             #
+#################################################
+resource "aws_route53_resolver_rule_association" "vpc_egress_rule_1_as_3" {
+  resolver_rule_id = aws_route53_resolver_rule.vpc_egress_rule_3.id
+  vpc_id           = aws_vpc.vpc_a.id
+}
+
+#################################################
+# ROUTE53 RESOLVER RULE ASSOCIATION             #
+#################################################
+resource "aws_route53_resolver_rule_association" "vpc_egress_rule_1_as_4" {
+  resolver_rule_id = aws_route53_resolver_rule.vpc_egress_rule_3.id
+  vpc_id           = aws_vpc.vpc_b.id
 }
