@@ -25,6 +25,12 @@ variable "vpc_cidr_b" {
   description = ""
 }
 
+variable "vpc_cidr_c" {
+  type        = string
+  default     = "10.3.0.0/16"
+  description = ""
+}
+
 variable "us_east_1_vpc_a_subnet01" {
   type        = string
   default     = "10.1.1.0/24"
@@ -48,6 +54,19 @@ variable "us_east_1_vpc_b_subnet02" {
   default     = "10.2.2.0/24"
   description = "US-EAST-1-VPC-B-SUBNET-2"
 }
+
+variable "us_east_2_vpc_c_subnet01" {
+  type        = string
+  default     = "10.3.1.0/24"
+  description = "US-EAST-2-VPC-C-SUBNET-1"
+}
+
+variable "us_east_2_vpc_c_subnet02" {
+  type        = string
+  default     = "10.3.2.0/24"
+  description = "US-EAST-2-VPC-C-SUBNET-2"
+}
+
 
 variable "us_east_1_vpc_a_availability_zone01" {
   type        = string
@@ -73,6 +92,18 @@ variable "us_east_1_vpc_b_availability_zone02" {
   description = "US East (N. Virginia)"
 }
 
+variable "us_east_2_vpc_c_availability_zone01" {
+  type        = string
+  default     = "us-east-2a"
+  description = "US East (Ohio)"
+}
+
+variable "us_east_2_vpc_c_availability_zone02" {
+  type        = string
+  default     = "us-east-2b"
+  description = "US East (Ohi)"
+}
+
 ###############################################
 #    S3 VPC END-POINT FOR US-EAST REGION      #
 ###############################################
@@ -80,6 +111,15 @@ variable "s3_endpoint" {
   type        = string
   default     = "com.amazonaws.us-east-1.s3"
   description = "S3 vpc endpoint for us-east-1 region"
+}
+
+###############################################
+#    S3 VPC END-POINT FOR US-EAST REGION      #
+###############################################
+variable "s3_endpoint_us_east_2" {
+  type        = string
+  default     = "com.amazonaws.us-east-2.s3"
+  description = "S3 vpc endpoint for us-east-2 region"
 }
 
 ###############################################
@@ -111,6 +151,34 @@ variable "ssm_enpoint_3" {
 }
 
 ###############################################
+#    SSM END-POINT FOR US-EAST REGION         #
+###############################################
+variable "us_east_2_ssm_enpoint_1" {
+  type        = string
+  default     = "com.amazonaws.us-east-2.ssm"
+  description = "SSM endpoint for us-east-2 region"
+}
+
+###############################################
+#    SSM END-POINT FOR US-EAST REGION         #
+###############################################
+variable "us_east_2_ssm_enpoint_2" {
+  type        = string
+  default     = "com.amazonaws.us-east-2.ssmmessages"
+  description = "SSM endpoint for us-east-2 region"
+}
+
+
+###############################################
+#    SSM END-POINT FOR US-EAST REGION         #
+###############################################
+variable "us_east_2_ssm_enpoint_3" {
+  type        = string
+  default     = "com.amazonaws.us-east-2.ec2messages"
+  description = "SSM endpoint for us-east-2 region"
+}
+
+###############################################
 #    EC2 INSTANCE TYPE                         #
 ###############################################
 variable "ec2_type" {
@@ -128,6 +196,15 @@ variable "aws_ami" {
   description = "Amazon Linux 2"
 }
 
+
+###############################################
+#    EC2 AMI                                  #
+###############################################
+variable "us_east_2_aws_ami" {
+  type        = string
+  default     = "ami-0beaa649c482330f7"
+  description = "Amazon Linux 2"
+}
 ###############################################
 #    EC2 INSTANCE PRIVATE IP                 #
 ###############################################
@@ -144,4 +221,31 @@ variable "us_east_1_vpc_a_ec2_instance_private_ip_2" {
   type        = string
   default     = "10.1.2.10"
   description = "US-EAST-1-VPC-A-SUBNET-02"
+}
+
+###############################################
+#    EC2 INSTANCE PRIVATE IP                 #
+###############################################
+variable "us_east_1_vpc_b_ec2_instance_private_ip_1" {
+  type        = string
+  default     = "10.2.1.10"
+  description = "US-EAST-1-VPC-B-SUBNET-01"
+}
+
+###############################################
+#    EC2 INSTANCE PRIVATE IP                 #
+###############################################
+variable "us_east_1_vpc_b_ec2_instance_private_ip_2" {
+  type        = string
+  default     = "10.2.2.10"
+  description = "US-EAST-1-VPC-B-SUBNET-02"
+}
+
+###############################################
+#    EC2 INSTANCE PRIVATE IP                 #
+###############################################
+variable "us_east_2_vpc_c_ec2_instance_private_ip_1" {
+  type        = string
+  default     = "10.3.1.10"
+  description = "US-EAST-2-VPC-C-SUBNET-01"
 }
